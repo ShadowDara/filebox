@@ -1,0 +1,206 @@
+/* === Allgemeine Bildstile === */
+img {
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+img:hover {
+  filter: drop-shadow(0 0 2em #673ab8aa);
+}
+
+
+/* === Homepage Ressourcen-Grid === */
+.home-section {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.resource-card {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-align: left;
+  text-decoration: none;
+  color: #222;
+  background-color: #f1f1f1;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.resource-card:hover {
+  border-color: #000;
+  box-shadow: 0 25px 50px -12px #673ab888;
+}
+
+
+/* === Upload-Formular === */
+.upload-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  /* background: linear-gradient(135deg, #f0f4ff, #fafbff); */
+  /* min-height: 100vh; */
+}
+
+.upload-box {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+
+.upload-box h1 {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.drop-area {
+  border: 2px dashed #aab;
+  border-radius: 10px;
+  padding: 1.5rem;
+  cursor: pointer;
+  color: #555;
+  font-size: 1rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.drop-area:hover {
+  background: #f6f9ff;
+  border-color: #6c8cff;
+}
+
+.drop-area input[type="file"] {
+  display: none;
+}
+
+.expires {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.expires p {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.expire-fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.expire-fields input {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.upload-box button[type="submit"] {
+  margin-top: 2rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background: #3478f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease-in-out;
+}
+
+.upload-box button[type="submit"]:hover {
+  background: #255edb;
+}
+
+.upload-box button[disabled] {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.message {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* === Responsive === */
+@media (max-width: 639px) {
+  .home-section {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+
+  .expire-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .upload-box {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* === Dark Mode === */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111;
+    color: #eee;
+  }
+
+  .resource-card {
+    background-color: #161616;
+    color: #ccc;
+  }
+
+  .resource-card:hover {
+    border-color: #bbb;
+  }
+
+  .upload-box {
+    background: #1e1e1e;
+    color: #f5f5f5;
+    box-shadow: none;
+  }
+
+  .upload-box h1 {
+    color: white;
+  }
+
+  .drop-area {
+    border-color: #555;
+    color: #ccc;
+    background-color: #2a2a2a;
+  }
+
+  .drop-area:hover {
+    background: #333;
+    border-color: #999;
+  }
+
+  .expire-fields input {
+    background-color: #2e2e2e;
+    color: #eee;
+    border-color: #444;
+  }
+
+  .upload-box button[type="submit"] {
+    background: #5a8dff;
+  }
+
+  .upload-box button[type="submit"]:hover {
+    background: #3a6fe8;
+  }
+
+  .message {
+    color: #ccc;
+  }
+}

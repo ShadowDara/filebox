@@ -1,0 +1,17 @@
+button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background: #3478f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease-in-out;
+}
+
+@media (prefers-color-scheme: dark) {
+    button {
+        background: #5a8dff;
+    }
+}
