@@ -20,11 +20,3 @@ pip install requirements.txt
 
 python app.py
 ```
-
-to build run
-```sh
-python build_export.py
-```
-
-This is not uploaded to Github yet, so i'm linking my
-[Githu Profile](https://github.com/shadowdara) here.
