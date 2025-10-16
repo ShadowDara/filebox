@@ -10,6 +10,9 @@ Clone the Repo and build the Dockercontainer
 ```sh
 git clone https://github.com/ShadowDara/filebox.git
 docker compose up
+
+# Default Link
+# http://0.0.0.0:8000
 ```
 
 or run
@@ -18,7 +21,12 @@ or run
 git clone https://github.com/ShadowDara/filebox.git
 pip install -r requirements.txt
 python app.py
+
+# Default Link
+# http://127.0.0.1:5000
 ```
+
+Link and Port can be overwritten with an ENV Var
 
 ## Develeping
 

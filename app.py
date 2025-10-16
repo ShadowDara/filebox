@@ -85,6 +85,15 @@ def upload():
         'sha_checksum': checksum
     }), 200
 
+@app.route('/api/get_download_website_path')
+def download_website_path():
+    port = os.environ.get("FLASK_RUN_PORT", 5000)
+    host = os.environ.get("FLAKS_RUN_HOST", "127.0.0.1")
+    return jsonify({
+        "site": host,
+        "port": port
+    }), 200
+
 # For the static HTML and CSS files
 @app.route('/<path:path>')
 def static_proxy(path):
@@ -93,6 +102,9 @@ def static_proxy(path):
 # To Download the files
 @app.route('/uploads/<path:path>')
 def download_files(path):
+    full_path = os.path.join(app.config["UPLOAD_FOLDER"], path)
+    print(f"[Download] Requesting: {path}")
+    print(f"[Download] Full Path: {full_path}")
     return send_from_directory(app.config["UPLOAD_FOLDER"], path, as_attachment=True)
 
 def cleanup_loop():
@@ -123,4 +135,4 @@ def cleanup_loop():
 
 if __name__ == '__main__':
     threading.Thread(target=cleanup_loop, daemon=True).start()
-    app.run(debug=False, port=5000)
+    app.run(debug=False, port=int(os.environ.get("FLASK_RUN_PORT", 5000)))

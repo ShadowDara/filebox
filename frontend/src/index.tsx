@@ -27,6 +27,20 @@ export async function prerender(data) {
 	return await ssr(<App {...data} />);
 }
 
-export function pagelink() {
-	return "http://localhost:5000"
+export async function pagelink(): Promise<string> {
+    try {
+        const response = await fetch("/api/get_download_website_path");
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data: { site: string; port: number } = await response.json();
+
+        // Erstelle die vollständige URL
+        return `http://${data.site}:${data.port}`;
+    } catch (error) {
+        console.error("Failed to fetch page link:", error);
+        return "http://127.0.0.1:5000"; // Fallback
+    }
 }

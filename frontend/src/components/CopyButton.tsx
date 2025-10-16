@@ -11,8 +11,8 @@ export default function CopyButton({ textToCopy, linktext, linktext2 }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error("Kopieren fehlgeschlagen:", err);
-      alert("Fehler beim Kopieren.");
+      console.error("Copying did not work:", err);
+      alert("Error while copying.");
     }
   };
 

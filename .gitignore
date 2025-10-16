@@ -7,3 +7,5 @@ db.json
 export
 
 uploads
+
+.env

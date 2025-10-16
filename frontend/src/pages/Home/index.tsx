@@ -32,7 +32,7 @@ export function Home() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!file) return setMessage('Bitte zuerst eine Datei auswählen.');
+		if (!file) return setMessage('Please select a file first.');
 
 		const formData = new FormData();
 		formData.append('file', file);
@@ -48,32 +48,37 @@ export function Home() {
 				body: formData
 			});
 
-			if (!res.ok) throw new Error('Fehler beim Upload');
+			if (!res.ok) throw new Error('Error while uploading');
 
 			const result = await res.json();
-			setMessage(`✅ Hochgeladen: ${result.filename || 'Datei'}`);
-			setDownloadLink(pagelink() + "/uploads/" + result.sha_checksum + "/" + result.filename);
+
+			const baseUrl = await pagelink(); // host + port
+			const downloadUrl = `${baseUrl}/uploads/${result.sha_checksum}/${result.filename}`;
+
+			setMessage(`Uploaded: ${result.filename || 'File'}`);
+			setDownloadLink(downloadUrl);
 			setUploadSuccess(true);
 		} catch (err) {
-			setMessage('❌ Upload fehlgeschlagen.');
+			setMessage('Upload did not work :(');
 			console.error(err);
 		} finally {
 			setUploading(false);
 		}
+
 	};
 
 	return (
 		<div className="upload-wrapper">
 			<form onSubmit={handleSubmit} className="upload-box" encType="multipart/form-data">
-				<h1>🚀 Datei hochladen</h1>
+				<h1>🚀 Upload file</h1>
 
 				<label className="drop-area">
-					{file ? `📄 ${file.name}` : '📁 Datei auswählen oder hier ablegen'}
+					{file ? `📄 ${file.name}` : 'Choose File'}
 					<input type="file" name="file" onChange={handleFileChange} required />
 				</label>
 
 				<div className="expires">
-					<p>⏳ Ablauf (optional)</p>
+					<p>⏳ Expiration Date</p>
 					<div className="expire-fields">
 						<input
 							type="number"
@@ -114,16 +119,16 @@ export function Home() {
 				</div>
 
 				<button type="submit" disabled={uploading}>
-					{uploading ? 'Hochladen...' : 'Datei hochladen'}
+					{uploading ? 'Uploading ...' : 'Upload File'}
 				</button>
 
 				{message && <p className="message">{message}</p>}
 
 				{uploadSuccess && (
-				<div className="copy-section">
-					<CopyButton textToCopy={downloadLink} linktext={"Copy Link"} linktext2={"Link copyied!"} />
-				</div>
-			)}
+					<div className="copy-section">
+						<CopyButton textToCopy={downloadLink} linktext={"Copy Link"} linktext2={"Link copyied!"} />
+					</div>
+				)}
 			</form>
 		</div>
 	);
