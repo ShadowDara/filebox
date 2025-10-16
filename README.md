@@ -8,12 +8,14 @@ some Time
 
 Clone the Repo and build the Dockercontainer
 ```sh
+git clone https://github.com/ShadowDara/filebox.git
 docker compose up
 ```
 
 or run
 
 ```sh
+git clone https://github.com/ShadowDara/filebox.git
 pip install -r requirements.txt
 python app.py
 ```

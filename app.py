@@ -103,11 +103,13 @@ def cleanup_loop():
         for key, (upload_time, lifetime) in list(uploaded_files.items()):
             if lifetime > 0 and (now - upload_time > lifetime):
                 filepath = os.path.join(app.config["UPLOAD_FOLDER"], key)
+                # TODO
+                # Add time to the logging Messages
                 try:
                     os.remove(filepath)
-                    print(f"🗑️ Datei gelöscht: {filepath}")
+                    print(f"Deleted File: {filepath}")
                 except FileNotFoundError:
-                    print(f"⚠️ Datei nicht gefunden: {filepath}")
+                    print(f"File not found: {filepath}")
                 expired.append(key)
 
         # Aus Memory entfernen
