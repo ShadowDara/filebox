@@ -4,6 +4,7 @@
 import os
 import time
 import threading
+import shutil
 
 from flask import Flask, jsonify
 from flask_cors import CORS
@@ -30,7 +31,7 @@ uploaded_files = {
 
 @app.route('/')
 def index():
-    return send_from_directory('static', 'index.html')
+    return send_from_directory('frontend/dist', 'index.html')
 
 # Calculate Datazize
 @app.route('/api/get_data_information')
@@ -70,7 +71,7 @@ def upload():
     os.makedirs(folder_path, exist_ok=True)
 
     filename = secure_filename(file.filename)
-    filepath = os.path.join(checksum, filename)
+    filepath = os.path.join(folder_path, filename)
     file.save(filepath)
 
     upload_time = time.time()
@@ -87,12 +88,12 @@ def upload():
 # For the static HTML and CSS files
 @app.route('/<path:path>')
 def static_proxy(path):
-    return send_from_directory('static', path)
+    return send_from_directory('frontend/dist', path)
 
 # To Download the files
 @app.route('/uploads/<path:path>')
 def download_files(path):
-    return send_from_directory('uploads', path)
+    return send_from_directory(app.config["UPLOAD_FOLDER"], path, as_attachment=True)
 
 def cleanup_loop():
     while True:
@@ -120,4 +121,4 @@ def cleanup_loop():
 
 if __name__ == '__main__':
     threading.Thread(target=cleanup_loop, daemon=True).start()
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)

@@ -1,0 +1,2 @@
+# Ignoriere build/output-Ordner in GitHub Linguist-Statistik
+frontend/dist/* linguist-vendored
