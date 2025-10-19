@@ -12,11 +12,6 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # --- Arbeitsverzeichnis ---
 WORKDIR /app
 
-# --- Systemabhängigkeiten (optional, nur wenn du native Pakete brauchst) ---
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
 # --- Requirements zuerst kopieren (für Cache) ---
 COPY requirements.txt .
 
