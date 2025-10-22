@@ -87,7 +87,7 @@ def upload():
 
 @app.route('/api/get_download_website_path')
 def download_website_path():
-    port = os.environ.get("FLASK_RUN_PORT", 5000)
+    port = os.environ.get("FLASK_RUN_PORT", 5477)
     host = os.environ.get("FLAKS_RUN_HOST", "127.0.0.1")
     return jsonify({
         "site": host,
@@ -135,4 +135,4 @@ def cleanup_loop():
 
 if __name__ == '__main__':
     threading.Thread(target=cleanup_loop, daemon=True).start()
-    app.run(debug=False, port=int(os.environ.get("FLASK_RUN_PORT", 5000)))
+    app.run(debug=False, port=int(os.environ.get("FLASK_RUN_PORT", 5477)))

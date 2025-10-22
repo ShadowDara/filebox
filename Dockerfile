@@ -5,7 +5,7 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     FLASK_RUN_HOST=0.0.0.0 \
-    FLASK_RUN_PORT=8000 \
+    FLASK_RUN_PORT=5477 \
     FLASK_APP=app.py \
     FLASK_DEBUG=1
 
@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # --- Port freigeben ---
-EXPOSE 8000
+EXPOSE 5477
 
 # --- Flask-Dev-Server starten ---
-CMD ["flask", "run"]
+CMD ["python", "app.py"]

@@ -41,6 +41,6 @@ export async function pagelink(): Promise<string> {
         return `http://${data.site}:${data.port}`;
     } catch (error) {
         console.error("Failed to fetch page link:", error);
-        return "http://127.0.0.1:5000"; // Fallback
+        return "http://127.0.0.1:5477"; // Fallback
     }
 }
